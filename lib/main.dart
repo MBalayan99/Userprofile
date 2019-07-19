@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './profile.dart';
 
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -42,6 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String relationStatus;
   String profashion;
   String hobby;
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -51,111 +53,180 @@ class _MyHomePageState extends State<MyHomePage> {
           // the App.build method, and use it to set our appbar title.
           title: Text('Registration'),
         ),
-        body: Container(
+        body:
+
+          Form( key: _formKey,
+              child:
+        Container(
           // Center is a layout widget. It takes a single child and positions it
           // in the middle of the parent.
           child: ListView(children: <Widget>[
-            TextField(
+            TextFormField(
               decoration: new InputDecoration(labelText: "Name"),
-              onChanged: (String value) {
+              onFieldSubmitted: (String value) {
                 setState(() {
                   name = value;
                 });
               },
-            ),
-            TextField(
+        validator: (value) {
+          if (value.isEmpty) {
+            return 'Enter some text';
+          }
+          return null;
+        }),
+            TextFormField(
               decoration: new InputDecoration(labelText: "Suname"),
-              onChanged: (String value) {
+              onFieldSubmitted: (String value) {
                 setState(() {
                   suname = value;
                 });
               },
+                validator: (value) {
+            if (value.isEmpty) {
+            return 'Enter some text';
+            }
+            return null;
+            }
+              ,
             ),
-            TextField(
+            TextFormField(
               decoration: new InputDecoration(labelText: "email address"),
-              onChanged: (String value) {
+              onFieldSubmitted: (String value) {
                 setState(() {
                   email = value;
                 });
               },
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Enter  email';
+                  }
+                  return null;
+                }
+
             ),
-            TextField(
+            TextFormField(
               decoration: new InputDecoration(labelText: "Post index"),
               keyboardType: TextInputType.number,
-              onChanged: (String value) {
+              onFieldSubmitted: (String value) {
                 setState(() {
                   post = int.parse(value);
                 });
               },
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Enter post index';
+                  }
+                  return null;
+                }
             ),
-            TextField(
+            TextFormField(
               decoration: new InputDecoration(labelText: "Borthday"),
-              onChanged: (String value) {
+              onFieldSubmitted: (String value) {
                 setState(() {
                   borthday = value;
                 });
               },
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Enter   your borthday';
+                  }
+                  return null;
+                }
             ),
-            TextField(
+            TextFormField(
               decoration: new InputDecoration(labelText: "Location"),
-              onChanged: (String value) {
+              onFieldSubmitted: (String value) {
                 setState(() {
                   Location = value;
                 });
               },
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Enter your location ';
+                  }
+                  return null;
+                }
             ),
-            TextField(
+            TextFormField(
               decoration: new InputDecoration(labelText: "Phone number"),
               keyboardType: TextInputType.number,
-              onChanged: (String value) {
+              onFieldSubmitted: (String value) {
                 setState(() {
                   phoneNamber = int.parse(value);
                 });
               },
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Enter your phone ';
+                  }
+                  return null;
+                }
+
             ),
-            TextField(
+            TextFormField(
               decoration: new InputDecoration(labelText: "relationStatus"),
-              onChanged: (String value) {
+              onFieldSubmitted: (String value) {
                 setState(() {
                   relationStatus = value;
                 });
               },
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Enter some text';
+                  }
+                  return null;
+                }
+
             ),
 
-            TextField(
+            TextFormField(
               decoration: new InputDecoration(labelText: "Profession"),
-              onChanged: (String value) {
+              onFieldSubmitted: (String value) {
                 setState(() {
                   profashion = value;
                 });
               },
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Enter your profession';
+                  }
+                  return null;
+                }
+
             ),
-            TextField(
+            TextFormField(
               decoration: new InputDecoration(labelText: "Hobby"),
-              onChanged: (String value) {
+              onFieldSubmitted: (String value) {
                 setState(() {
                   hobby = value;
                 });
               },
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Enter your hobby';
+                  }
+                  return null;
+                }
             ),
           ]),
-        ),
+        )),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {
+          onPressed: () {  if (_formKey.currentState.validate()) {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (BuildContext context) => Profile(
-                        name,
-                        suname,
-                        email,
-                        post,
-                        phoneNamber,
-                        borthday,
-                        Location,
-                        profashion,
-                        hobby)));
-          },
+                    builder: (BuildContext context) =>
+                        Profile(
+                            name,
+                            suname,
+                            email,
+                            post,
+                            phoneNamber,
+                            borthday,
+                            Location,
+                            profashion,
+                            hobby)));
+          }},
           child: Icon(Icons
               .add), // This trailing comma makes auto-formatting nicer for build methods.
         ));
