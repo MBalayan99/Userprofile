@@ -33,16 +33,20 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String name;
-  String suname;
-  String email;
-  int post;
-  int phoneNamber;
-  String borthday;
-  String Location;
-  String relationStatus;
-  String profashion;
-  String hobby;
+Map<String,dynamic> _profile = {
+  "name": null,
+  "suname":null,
+  "email":null,
+  "post":null,
+  "phonnumber":null,
+  "borthday":null,
+ " Location":null,
+  "relationStatus":null,
+  "profashion":null,
+  "hobby":null,
+
+};
+
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -65,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
               decoration: new InputDecoration(labelText: "Name"),
               onFieldSubmitted: (String value) {
                 setState(() {
-                  name = value;
+                  _profile['name'] = value;
                 });
               },
         validator: (value) {
@@ -78,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
               decoration: new InputDecoration(labelText: "Suname"),
               onFieldSubmitted: (String value) {
                 setState(() {
-                  suname = value;
+                  _profile['suname'] = value;
                 });
               },
                 validator: (value) {
@@ -93,7 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
               decoration: new InputDecoration(labelText: "email address"),
               onFieldSubmitted: (String value) {
                 setState(() {
-                  email = value;
+                  _profile['email'] = value;
                 });
               },
                 validator: (value) {
@@ -109,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
               keyboardType: TextInputType.number,
               onFieldSubmitted: (String value) {
                 setState(() {
-                  post = int.parse(value);
+                  _profile['post'] = int.parse(value);
                 });
               },
                 validator: (value) {
@@ -123,7 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
               decoration: new InputDecoration(labelText: "Borthday"),
               onFieldSubmitted: (String value) {
                 setState(() {
-                  borthday = value;
+                  _profile['borthday'] = value;
                 });
               },
                 validator: (value) {
@@ -137,7 +141,7 @@ class _MyHomePageState extends State<MyHomePage> {
               decoration: new InputDecoration(labelText: "Location"),
               onFieldSubmitted: (String value) {
                 setState(() {
-                  Location = value;
+                  _profile['Location'] = value;
                 });
               },
                 validator: (value) {
@@ -152,7 +156,7 @@ class _MyHomePageState extends State<MyHomePage> {
               keyboardType: TextInputType.number,
               onFieldSubmitted: (String value) {
                 setState(() {
-                  phoneNamber = int.parse(value);
+                  _profile['phoneNamber ']= int.parse(value);
                 });
               },
                 validator: (value) {
@@ -167,7 +171,7 @@ class _MyHomePageState extends State<MyHomePage> {
               decoration: new InputDecoration(labelText: "relationStatus"),
               onFieldSubmitted: (String value) {
                 setState(() {
-                  relationStatus = value;
+                  _profile['relationStatus'] = value;
                 });
               },
                 validator: (value) {
@@ -183,7 +187,7 @@ class _MyHomePageState extends State<MyHomePage> {
               decoration: new InputDecoration(labelText: "Profession"),
               onFieldSubmitted: (String value) {
                 setState(() {
-                  profashion = value;
+                  _profile['profashion'] = value;
                 });
               },
                 validator: (value) {
@@ -198,7 +202,7 @@ class _MyHomePageState extends State<MyHomePage> {
               decoration: new InputDecoration(labelText: "Hobby"),
               onFieldSubmitted: (String value) {
                 setState(() {
-                  hobby = value;
+                  _profile['hobby'] = value;
                 });
               },
                 validator: (value) {
@@ -216,19 +220,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 context,
                 MaterialPageRoute(
                     builder: (BuildContext context) =>
-                        Profile(
-                            name,
-                            suname,
-                            email,
-                            post,
-                            phoneNamber,
-                            borthday,
-                            Location,
-                            profashion,
-                            hobby)));
-          }},
-          child: Icon(Icons
-              .add), // This trailing comma makes auto-formatting nicer for build methods.
+                        Profile( _profile)
+
+                )); }},
+          child: Icon(Icons.add), // This trailing comma makes auto-formatting nicer for build methods.
         ));
   }
 }

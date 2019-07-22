@@ -2,18 +2,12 @@ import 'package:flutter/material.dart';
 
 
 class Profile extends StatelessWidget {
-  final name;
-  final surname;
-  final email;
-  final post;
-  final phonNumber;
-  final borthday;
-  final Location;
-  final profashion;
-  final hobby;
 
-  Profile(this.name, this.surname, this.email, this.post, this.phonNumber,
-      this.borthday, this.Location, this.profashion, this.hobby);
+  final Map profile;
+  Profile(this.profile);
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +22,7 @@ class Profile extends StatelessWidget {
                   pinned: true,
                   flexibleSpace: FlexibleSpaceBar(
                       centerTitle: false,
-                      title: Text("Steve Jobs",
+                      title: Text(profile['name'].toString()+profile['suname'],
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 16.0,
@@ -39,26 +33,31 @@ class Profile extends StatelessWidget {
                 ),
               ];
             },
-            body: Column(
+            body:  Container(
+              color: Colors.white,
+              child: Column(
               children: <Widget>[
                 ListTile(
                   leading: Icon(Icons.phone),
-                  title: Text("(374)34562346"),
+                  title: Text(profile['phonnumber'].toString()),
                   subtitle: Text("Mobile"),
                 ),
                 ListTile(
-                  title: Text("(374)236557745"),
+                  title: Text("(+374)23655778"),
                   subtitle: Text("Work"),
                   leading: Icon(Icons.phone),
                 ),
                 Divider(),
                 ListTile(
                   leading: Icon(Icons.local_post_office),
-                  title: Text("ali.connors@example.com"),
+                  title: Text(profile['email']),
                   subtitle: Text("Personal"),
-                )
+                ),
+            Divider(),
+
+
               ],
-            )));
+            ),)));
   }
 }
 
