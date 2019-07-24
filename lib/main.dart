@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import './profile.dart';
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
+import 'package:intl/intl.dart';
 
+const appName = 'DateTimePickerFormField Example';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -30,6 +34,7 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
+
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -45,11 +50,15 @@ Map<String,dynamic> _profile = {
   "profashion":null,
   "hobby":null,
 
+
 };
+final dateFormat = DateFormat("EEEE, MMMM d, yyyy ");
+DateTime date;
 
   final _formKey = GlobalKey<FormState>();
 
-  @override
+
+@override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -123,20 +132,24 @@ Map<String,dynamic> _profile = {
                   return null;
                 }
             ),
-            TextFormField(
-              decoration: new InputDecoration(labelText: "Borthday"),
-              onFieldSubmitted: (String value) {
-                setState(() {
-                  _profile['borthday'] = value;
-                });
-              },
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Enter   your borthday';
-                  }
-                  return null;
-                }
+            Container(
+              child: Column(
+                children: <Widget>[
+                  DateTimePickerFormField(
+                    format: dateFormat,
+                    dateOnly: true,
+
+                    decoration: InputDecoration(labelText: 'Date'),
+
+                    onChanged: (dt) => setState(() =>_profile['borthday'] = dt),
+
+
+                  ),
+                ],
+              ),
             ),
+
+
             TextFormField(
               decoration: new InputDecoration(labelText: "Location"),
               onFieldSubmitted: (String value) {

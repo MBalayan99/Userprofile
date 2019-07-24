@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:intl/intl.dart';
 
 class Profile extends StatelessWidget {
 
@@ -52,6 +52,11 @@ class Profile extends StatelessWidget {
                   leading: Icon(Icons.local_post_office),
                   title: Text(profile['email']),
                   subtitle: Text("Personal"),
+                ),
+                ListTile(
+                  leading: Icon(Icons.calendar_today),
+                  title: Text(DateFormat('yyy,MM,dd').format(profile['borthday']).toString()),
+                  subtitle: Text("Borthday"),
                 ),
             Divider(),
 
