@@ -35,7 +35,7 @@ class Profile extends StatelessWidget {
             },
             body:  Container(
               color: Colors.white,
-              child: Column(
+              child: ListView(
               children: <Widget>[
                 ListTile(
                   leading: Icon(Icons.phone),
@@ -58,11 +58,24 @@ class Profile extends StatelessWidget {
                   title: Text(DateFormat('yyy,MM,dd').format(profile['borthday']).toString()),
                   subtitle: Text("Borthday"),
                 ),
+                ListTile(
+                  leading: Icon(Icons.wc),
+                  title: Text(profile['gender'].toString()),
+                  subtitle: Text("Your gender"),
+                ),
+
             Divider(),
 
 
-              ],
+        ],
+
+
+
+
             ),)));
   }
 }
+
+
+
 

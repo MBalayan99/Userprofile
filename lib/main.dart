@@ -8,6 +8,8 @@ const appName = 'DateTimePickerFormField Example';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  String dropdownValue = 'One';
+
 
   // This widget is the root of your application.
   @override
@@ -49,6 +51,7 @@ Map<String,dynamic> _profile = {
   "relationStatus":null,
   "profashion":null,
   "hobby":null,
+  "gender":null,
 
 
 };
@@ -57,6 +60,36 @@ DateTime date;
 
   final _formKey = GlobalKey<FormState>();
 
+DropdownButton _dropdown() => DropdownButton<String>(
+  items: [
+    DropdownMenuItem(
+      value: "Male",
+      child: Row(
+        children: <Widget>[
+          SizedBox(width: 10),
+          Text(
+            "Male",
+          ),
+        ],
+      ),
+    ),
+    DropdownMenuItem(
+      value: "Female",
+      child:
+          Text(
+            "Female",
+          ),
+    ),
+  ],
+  onChanged: (value) {
+    setState(() {
+      _profile['gender'] = value;
+    });
+  },
+  hint: Text("Select your gender"),
+  value: _profile['gender'],
+  isExpanded: true,
+);
 
 @override
   Widget build(BuildContext context) {
@@ -102,6 +135,7 @@ DateTime date;
             }
               ,
             ),
+            _dropdown(),
             TextFormField(
               decoration: new InputDecoration(labelText: "email address"),
               onFieldSubmitted: (String value) {
@@ -117,21 +151,7 @@ DateTime date;
                 }
 
             ),
-            TextFormField(
-              decoration: new InputDecoration(labelText: "Post index"),
-              keyboardType: TextInputType.number,
-              onFieldSubmitted: (String value) {
-                setState(() {
-                  _profile['post'] = int.parse(value);
-                });
-              },
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Enter post index';
-                  }
-                  return null;
-                }
-            ),
+
             Container(
               child: Column(
                 children: <Widget>[
@@ -169,7 +189,8 @@ DateTime date;
               keyboardType: TextInputType.number,
               onFieldSubmitted: (String value) {
                 setState(() {
-                  _profile['phoneNamber ']= int.parse(value);
+                  _profile['phonnumber']= int.parse(value);
+
                 });
               },
                 validator: (value) {
@@ -184,7 +205,9 @@ DateTime date;
               decoration: new InputDecoration(labelText: "relationStatus"),
               onFieldSubmitted: (String value) {
                 setState(() {
-                  _profile['relationStatus'] = value;
+                  _profile['relationStatus'] =_profile['gender'];
+
+
                 });
               },
                 validator: (value) {
@@ -236,7 +259,10 @@ DateTime date;
                         Profile( _profile)
 
                 )); }},
-          child: Icon(Icons.add), // This trailing comma makes auto-formatting nicer for build methods.
+          child: Icon(Icons.assignment_turned_in), // This trailing comma makes auto-formatting nicer for build methods.
         ));
   }
+
+
+
 }
