@@ -42,11 +42,11 @@ class Profile extends StatelessWidget {
                   title: Text(profile['phonnumber'].toString()),
                   subtitle: Text("Mobile"),
                 ),
-                ListTile(
-                  title: Text("(+374)23655778"),
-                  subtitle: Text("Work"),
-                  leading: Icon(Icons.phone),
-                ),
+//                ListTile(
+//                  title: Text("(+374)23655778"),
+//                  subtitle: Text("Work"),
+//                  leading: Icon(Icons.phone),
+//                ),
                 Divider(),
                 ListTile(
                   leading: Icon(Icons.local_post_office),
@@ -63,6 +63,12 @@ class Profile extends StatelessWidget {
                   title: Text(profile['gender'].toString()),
                   subtitle: Text("Your gender"),
                 ),
+                ListTile(
+                  leading: Icon(Icons.group),
+                  title: Text(profile['married'] ? 'Married': 'Not married'),
+                  subtitle: Text("Releyshion sheep status"),
+                ),
+
 
             Divider(),
 

@@ -48,17 +48,17 @@ Map<String,dynamic> _profile = {
   "phonnumber":null,
   "borthday":null,
  " Location":null,
-  "relationStatus":null,
+  "married":false,
   "profashion":null,
   "hobby":null,
   "gender":null,
-
 
 };
 final dateFormat = DateFormat("EEEE, MMMM d, yyyy ");
 DateTime date;
 
   final _formKey = GlobalKey<FormState>();
+bool lights = false;
 
 DropdownButton _dropdown() => DropdownButton<String>(
   items: [
@@ -201,22 +201,18 @@ DropdownButton _dropdown() => DropdownButton<String>(
                 }
 
             ),
-            TextFormField(
-              decoration: new InputDecoration(labelText: "relationStatus"),
-              onFieldSubmitted: (String value) {
+
+            SwitchListTile(
+              title: const Text('Maried'),
+              value: _profile['married'],
+              onChanged: (bool value) {
                 setState(() {
-                  _profile['relationStatus'] =_profile['gender'];
+                  _profile['married'] = value;
+                  print( _profile['married'].toString());
 
 
                 });
-              },
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Enter some text';
-                  }
-                  return null;
-                }
-
+              }
             ),
 
             TextFormField(
